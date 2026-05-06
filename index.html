@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioTech</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- CANVAS BG -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">🧬 BioTech</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span style="color:var(--text);font-size:1.3rem;"><i class="fas fa-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#que-es">¿Qué es?</a></li>
+        <li class="nav-item"><a class="nav-link" href="#bacteria">Bacteria</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ruta">Ruta</a></li>
+        <li class="nav-item"><a class="nav-link" href="#proceso">Proceso ADN</a></li>
+        <li class="nav-item"><a class="nav-link" href="#biorreactor">Biorreactor</a></li>
+        <li class="nav-item"><a class="nav-link" href="#extraccion">Purificación</a></li>
+        <li class="nav-item"><a class="nav-link" href="#producto">Producto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero" class="section-spacer">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h1 class="hero-title">
+          Mermelada de <span class="accent">Remolacha</span><br>
+          Fortificada con <span class="accent2">Ácido Fólico</span>
+        </h1>
+        <p class="hero-sub">
+          Una solución biotecnológica innovadora para combatir la anemia megaloblástica. Producimos vitamina B9 mediante <em>E. coli</em> recombinante con el gen <strong>folP</strong> de <em>Lactococcus lactis</em>.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#que-es" class="btn-primary-custom">Explorar el Proyecto</a>
+          <a href="#ruta" class="btn-outline-custom">Ver Ruta Bioquímica</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="molecule-container">
+          <svg class="molecule-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="380" height="380">
+            <defs>
+              <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#2A9D82" stop-opacity=".8"/>
+                <stop offset="100%" stop-color="#2A9D82" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#C2375C" stop-opacity=".8"/>
+                <stop offset="100%" stop-color="#C2375C" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="blur1"><feGaussianBlur stdDeviation="8"/></filter>
+            </defs>
+            <!-- Glow halos -->
+            <circle cx="200" cy="200" r="120" fill="url(#glow1)" filter="url(#blur1)" opacity=".4"/>
+            <!-- Hexagon ring -->
+            <g id="hex-ring">
+              <polygon points="200,60 278,110 278,210 200,260 122,210 122,110" fill="none" stroke="rgba(42,157,130,.3)" stroke-width="1.5"/>
+              <polygon points="200,80 262,116 262,192 200,228 138,192 138,116" fill="none" stroke="rgba(42,157,130,.2)" stroke-width="1"/>
+            </g>
+            <!-- Central molecule: pteridine ring -->
+            <g transform="translate(200,200)">
+              <!-- Hexagon 1 (pteridine) -->
+              <polygon points="0,-55 47,-27 47,27 0,55 -47,27 -47,-27" fill="rgba(42,157,130,.15)" stroke="#2A9D82" stroke-width="2"/>
+              <!-- Hexagon 2 (pABA ring) -->
+              <polygon points="68,-25 95,-10 95,40 68,55 41,40 41,-10" fill="rgba(139,26,74,.15)" stroke="#C2375C" stroke-width="2"/>
+              <!-- Glutamate tail -->
+              <line x1="95" y1="15" x2="140" y2="15" stroke="#D4A017" stroke-width="2.5" stroke-dasharray="5,3"/>
+              <circle cx="150" cy="15" r="8" fill="#D4A017" opacity=".8"/>
+              <!-- Atoms on pteridine -->
+              <circle cx="0" cy="-55" r="5" fill="#2A9D82"/>
+              <circle cx="47" cy="-27" r="5" fill="#2A9D82"/>
+              <circle cx="47" cy="27" r="5" fill="#2A9D82"/>
+              <circle cx="0" cy="55" r="5" fill="#2A9D82"/>
+              <circle cx="-47" cy="27" r="5" fill="#2A9D82"/>
+              <circle cx="-47" cy="-27" r="5" fill="#2A9D82"/>
+              <!-- N atoms -->
+              <text x="-6" y="-52" font-size="9" fill="#fff" font-family="monospace" font-weight="bold">N</text>
+              <text x="44" y="-23" font-size="9" fill="#fff" font-family="monospace" font-weight="bold">N</text>
+              <!-- Labels -->
+              <text x="-20" y="5" font-size="10" fill="rgba(42,157,130,.9)" font-family="Syne,sans-serif" font-weight="700">Pteridina</text>
+              <text x="48" y="20" font-size="9" fill="rgba(194,55,92,.9)" font-family="Syne,sans-serif" font-weight="700">pABA</text>
+              <text x="120" y="11" font-size="9" fill="rgba(212,160,23,.9)" font-family="Syne,sans-serif" font-weight="700">Glu</text>
+              <!-- Double bonds -->
+              <line x1="-42" y1="-24" x2="-25" y2="-34" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+              <line x1="8" y1="-54" x2="25" y2="-44" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+            </g>
+            <!-- Orbiting particles -->
+            <circle r="4" fill="#C2375C" opacity=".9">
+              <animateMotion dur="6s" repeatCount="indefinite">
+                <mpath href="#orbit1"/>
+              </animateMotion>
+            </circle>
+            <circle r="3" fill="#2A9D82" opacity=".9">
+              <animateMotion dur="9s" repeatCount="indefinite">
+                <mpath href="#orbit2"/>
+              </animateMotion>
+            </circle>
+            <circle r="2.5" fill="#D4A017" opacity=".8">
+              <animateMotion dur="7s" repeatCount="indefinite" begin="-2s">
+                <mpath href="#orbit1"/>
+              </animateMotion>
+            </circle>
+            <path id="orbit1" d="M 200,200 m -140,0 a 140,140 0 1,1 280,0 a 140,140 0 1,1 -280,0" fill="none"/>
+            <path id="orbit2" d="M 200,200 m -100,0 a 100,55 0 1,1 200,0 a 100,55 0 1,1 -200,0" fill="none"/>
+            <!-- Label center -->
+            <text x="200" y="370" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.4)" font-family="Syne,sans-serif">Ácido Fólico — L-5-MTHF</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Stats row -->
+    <div class="row g-4 mt-5 pt-2">
+      <div class="col-6 col-md-3 text-center">
+        <div class="stat-number" style="color:var(--beet-light)" data-count="1620">0</div>
+        <div class="stat-label">millones con anemia (OMS)</div>
+      </div>
+      <div class="col-6 col-md-3 text-center">
+        <div class="stat-number" style="color:var(--folate-light)" data-count="357">0</div>
+        <div class="stat-label">aminoácidos de la proteína DHPS</div>
+      </div>
+      <div class="col-6 col-md-3 text-center">
+        <div class="stat-number" style="color:var(--gold)" data-count="1074">0</div>
+        <div class="stat-label">nucleótidos del gen folP</div>
+      </div>
+      <div class="col-6 col-md-3 text-center">
+        <div class="stat-number" style="color:var(--beet-light)">83<span style="font-size:1.5rem">%</span></div>
+        <div class="stat-label">aumento en producción de folato a 25°C</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUÉ ES ═══════════ -->
+<section id="que-es" class="section-spacer">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <!-- Ácido Fólico -->
+      <div class="col-lg-6">
+        <div class="section-label">Compuesto Activo</div>
+        <div class="divider"></div>
+        <h2 class="section-title">¿Qué es el <span style="color:var(--folate-light)">Ácido Fólico</span>? (Vitamina B9)</h2>
+        <p class="section-body mb-4">El ácido fólico, también conocido como vitamina B9, es un micronutriente esencial para el organismo humano. Su forma biológicamente activa, el <strong style="color:var(--folate-light)">L-5-metiltetrahidrofolato (L-5-MTHF)</strong>, es indispensable para múltiples procesos celulares críticos.</p>
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="glass-card">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="card-icon icon-green"><i class="fas fa-dna"></i></div>
+                </div>
+                <div class="col-md-10">
+                    <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:8px">Síntesis de Bases Nitrogenadas</h5>
+                    <p style="font-size:.88rem;color:var(--muted);margin:0">Esencial para la producción de purinas y pirimidinas, los bloques constructores del ADN y ARN celular.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="glass-card">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="card-icon icon-green"><i class="fas fa-atom"></i></div>
+                </div>
+                <div class="col-md-10">
+                  <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:8px">Metilación del ADN</h5>
+                  <p style="font-size:.88rem;color:var(--muted);margin:0">Participa en la conversión de homocisteína a metionina, proceso clave para la epigenética y el metabolismo celular.</p>
+                </div>
+              </div>
+              <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:8px">Metilación del ADN</h5>
+              <p style="font-size:.88rem;color:var(--muted);margin:0">Participa en la conversión de homocisteína a metionina, proceso clave para la epigenética y el metabolismo celular.</p>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="glass-card">
+              <div class="card-icon icon-green"><i class="fas fa-heartbeat"></i></div>
+              <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:8px">Maduración Eritrocitaria</h5>
+              <p style="font-size:.88rem;color:var(--muted);margin:0">Sin folato, los glóbulos rojos no maduran correctamente, resultando en células grandes y disfuncionales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Anemia Megaloblástica -->
+      <div class="col-lg-6">
+        <div class="section-label">Enfermedad Objetivo</div>
+        <div class="divider" style="background:linear-gradient(90deg,var(--beet-light),#ff6b6b)"></div>
+        <h2 class="section-title">Anemia <span style="color:var(--beet-light)">Megaloblástica</span></h2>
+        <p class="section-body mb-4">La deficiencia de folato provoca alteraciones graves en la producción de glóbulos rojos. Los eritrocitos resultantes son de mayor tamaño pero menor funcionalidad, comprometiendo el transporte de oxígeno a los tejidos.</p>
+        
+        <div class="highlight-box mb-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <i class="fas fa-exclamation-triangle" style="color:var(--beet-light)"></i>
+            <strong style="font-family:'Syne',sans-serif">Impacto Global</strong>
+          </div>
+          <p style="font-size:.88rem;color:var(--muted);margin:0">Según la OMS, la anemia afecta aproximadamente a <strong style="color:var(--text)">1,620 millones de personas</strong> a nivel mundial. La deficiencia de folato es causa subyacente relevante, especialmente en <strong style="color:var(--text)">mujeres en edad fértil y niños menores de cinco años</strong> en países en desarrollo.</p>
+        </div>
+
+        <div class="glass-card">
+          <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;color:var(--beet-pale)">Síntomas Característicos</h5>
+          <div class="row g-2">
+            <div class="col-6" style="font-size:.84rem;color:var(--muted)"><i class="fas fa-circle" style="font-size:.4rem;color:var(--beet-light);margin-right:8px;vertical-align:middle"></i> Eritrocitos megaloblásticos</div>
+            <div class="col-6" style="font-size:.84rem;color:var(--muted)"><i class="fas fa-circle" style="font-size:.4rem;color:var(--beet-light);margin-right:8px;vertical-align:middle"></i> Fatiga extrema</div>
+            <div class="col-6" style="font-size:.84rem;color:var(--muted)"><i class="fas fa-circle" style="font-size:.4rem;color:var(--beet-light);margin-right:8px;vertical-align:middle"></i> Dificultad respiratoria</div>
+            <div class="col-6" style="font-size:.84rem;color:var(--muted)"><i class="fas fa-circle" style="font-size:.4rem;color:var(--beet-light);margin-right:8px;vertical-align:middle"></i> Palidez cutánea</div>
+            <div class="col-6" style="font-size:.84rem;color:var(--muted)"><i class="fas fa-circle" style="font-size:.4rem;color:var(--beet-light);margin-right:8px;vertical-align:middle"></i> Defectos del tubo neural</div>
+            <div class="col-6" style="font-size:.84rem;color:var(--muted)"><i class="fas fa-circle" style="font-size:.4rem;color:var(--beet-light);margin-right:8px;vertical-align:middle"></i> Hipersegmentación neutrófilos</div>
+          </div>
+        </div>
+
+        <div class="glass-card mt-3" style="background:linear-gradient(135deg,rgba(42,157,130,.1),rgba(139,26,74,.1));border-color:rgba(42,157,130,.2)">
+          <div class="d-flex align-items-center gap-3">
+            <div style="font-size:2rem"><img src="img/pngegg (2).png" alt="Remolacha" style="width: 70px; height: 70px; object-fit: cover;"></div>
+            <div>
+              <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:8px">Nuestra Solución</h5>
+              <p style="font-size:.84rem;color:var(--muted);margin:0">Mermelada de remolacha enriquecida con L-5-MTHF producido biotecnológicamente — un alimento funcional accesible y biodisponible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BACTERIA & GEN ═══════════ -->
+<section id="bacteria" style="background:rgba(255,255,255,.015);padding:100px 0;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Microorganismo Productor</div>
+      <div class="divider mx-auto"></div>
+      <h2 class="section-title">Bacteria y Gen Seleccionados</h2>
+      <p style="color:var(--muted);max-width:560px;margin:0 auto">Un sistema de expresión recombinante diseñado con precisión para máxima producción de ácido fólico.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- E. coli Card -->
+      <div class="col-lg-4">
+        <div class="glass-card h-100">
+          <div style="text-align:center;margin-bottom:24px">
+            <div style="width:80px;height:80px;background:rgba(42,157,130,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:2.5rem">🦠</div>
+          </div>
+          <h4 style="font-family:'Syne',sans-serif;font-size:1.15rem;text-align:center;margin-bottom:8px">Escherichia coli BL21(DE3)</h4>
+          <p style="font-size:.8rem;color:var(--folate-light);text-align:center;margin-bottom:20px;font-family:'Syne',sans-serif">ORGANISMO HUÉSPED</p>
+          <div class="row g-2">
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">Genoma</div>
+                <div style="font-size:.9rem;color:var(--text);margin-top:4px">Completamente secuenciado y caracterizado</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">Ventaja Clave</div>
+                <div style="font-size:.9rem;color:var(--text);margin-top:4px">Posee ruta THF nativa amplificable</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">ARN Polimerasa T7</div>
+                <div style="font-size:.9rem;color:var(--text);margin-top:4px">Expresada constitutivamente en su cromosoma</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gen folP Card -->
+      <div class="col-lg-4">
+        <div class="glass-card h-100" style="border-color:rgba(212,160,23,.2)">
+          <div style="text-align:center;margin-bottom:24px">
+            <div style="width:80px;height:80px;background:rgba(212,160,23,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:2rem">
+              <span style="font-family:'Syne',sans-serif;font-weight:800;color:var(--gold)">folP</span>
+            </div>
+          </div>
+          <h4 style="font-family:'Syne',sans-serif;font-size:1.15rem;text-align:center;margin-bottom:8px">Gen <em>folP</em></h4>
+          <p style="font-size:.8rem;color:var(--gold);text-align:center;margin-bottom:20px;font-family:'Syne',sans-serif">DIHIDROPTEROATO SINTASA (DHPS)</p>
+          <table class="custom-table">
+            <tr>
+              <td style="background:transparent;padding:6px 0;font-size:.8rem;color:var(--muted)">Organismo fuente</td>
+              <td style="background:transparent;padding:6px 0;font-size:.82rem;text-align:right"><em>Lactococcus lactis</em></td>
+            </tr>
+            <tr>
+              <td style="background:transparent;padding:6px 0;font-size:.8rem;color:var(--muted)">Locus tag</td>
+              <td style="background:transparent;padding:6px 0;font-size:.82rem;text-align:right;font-family:monospace">LL14B4_RS05680</td>
+            </tr>
+            <tr>
+              <td style="background:transparent;padding:6px 0;font-size:.8rem;color:var(--muted)">Longitud gen</td>
+              <td style="background:transparent;padding:6px 0;font-size:.82rem;text-align:right;color:var(--gold)">1,074 pb</td>
+            </tr>
+            <tr>
+              <td style="background:transparent;padding:6px 0;font-size:.8rem;color:var(--muted)">Proteína</td>
+              <td style="background:transparent;padding:6px 0;font-size:.82rem;text-align:right;color:var(--gold)">357 aa</td>
+            </tr>
+            <tr>
+              <td style="background:transparent;padding:6px 0;font-size:.8rem;color:var(--muted)">Acceso NCBI</td>
+              <td style="background:transparent;padding:6px 0;font-size:.78rem;text-align:right;font-family:monospace">WP_109990865.1</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Vector pETDuet-1 -->
+      <div class="col-lg-4">
+        <div class="glass-card h-100" style="border-color:rgba(194,55,92,.2)">
+          <div style="text-align:center;margin-bottom:24px">
+            <div style="width:80px;height:80px;background:rgba(194,55,92,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:2rem">⭕</div>
+          </div>
+          <h4 style="font-family:'Syne',sans-serif;font-size:1.15rem;text-align:center;margin-bottom:8px">Vector pETDuet-1</h4>
+          <p style="font-size:.8rem;color:var(--beet-light);text-align:center;margin-bottom:20px;font-family:'Syne',sans-serif">SISTEMA DE EXPRESIÓN</p>
+          <div class="row g-2">
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">Promotor T7 (×2)</div>
+                <div style="font-size:.84rem;color:var(--text);margin-top:4px">Alta expresión con ARN pol. T7 de BL21(DE3)</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">Etiqueta 6×His</div>
+                <div style="font-size:.84rem;color:var(--text);margin-top:4px">Purificación por cromatografía Ni-NTA</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">Sitios de clonación</div>
+                <div style="font-size:.84rem;color:var(--text);margin-top:4px"><span class="gene-tag">NcoI</span> y <span class="gene-tag">NotI</span> en MCS1</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="param-card">
+                <div class="param-label">Resistencia</div>
+                <div style="font-size:.84rem;color:var(--text);margin-top:4px">Ampicilina 100 μg/mL (gen <em>AmpR</em>)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ RUTA BIOQUÍMICA ═══════════ -->
+<section id="ruta" class="section-spacer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div class="section-label">Biosíntesis</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Ruta Bioquímica del Ácido Fólico</h2>
+        <p class="section-body mb-4">Siete pasos enzimáticos transforman el GTP en L-5-MTHF, la forma bioactiva del ácido fólico. El gen <strong style="color:var(--gold)">folP</strong> codifica el paso 4, la enzima central DHPS.</p>
+        <div class="highlight-box">
+          <p style="font-size:.88rem;color:var(--muted);margin:0">
+            <strong style="color:var(--text)">Ecuación maestra:</strong><br>
+            <span style="color:var(--folate-light)">Pteridina</span> + <span style="color:var(--beet-light)">pABA</span> + <span style="color:var(--gold)">Glutamato</span><br>
+            <span style="font-size:1.2rem">↓</span><br>
+            <strong style="color:var(--text)">Ácido Fólico Activo (L-5-MTHF)</strong>
+          </p>
+        </div>
+        <p class="mt-4" style="font-size:.84rem;color:var(--muted)">El pABA (ácido para-aminobenzoico) es sintetizado a partir de corismato mediante las enzimas PabA y PabB, y es el sustrato directo de la enzima DHPS. Sin pABA, la producción de folato cesa completamente.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="pathway-wrap">
+          <h6 style="font-family:'Syne',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:24px">Pasos de la Biosíntesis — Haz clic en cada paso</h6>
+          <div id="pathway-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROCESO ADN RECOMBINANTE ═══════════ -->
+<section id="proceso" style="background:rgba(255,255,255,.015);padding:100px 0;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Ingeniería Genética</div>
+      <div class="divider mx-auto"></div>
+      <h2 class="section-title">Diseño del Proceso de ADN Recombinante</h2>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <div id="step-detail" class="glass-card" style="min-height:320px;position:sticky;top:100px">
+          <div id="step-icon" style="font-size:2.5rem;margin-bottom:16px">🧫</div>
+          <h4 id="step-title" style="font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:12px">Selecciona un paso</h4>
+          <p id="step-desc" style="font-size:.88rem;color:var(--muted);line-height:1.7">Haz clic en cualquier paso del proceso para ver los detalles del procedimiento de clonación y expresión del gen folP.</p>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div id="process-steps"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BIORREACTOR ═══════════ -->
+<section id="biorreactor" class="section-spacer">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Sistema de Producción</div>
+      <div class="divider mx-auto"></div>
+      <h2 class="section-title">Biorreactor: Cultivo y Producción</h2>
+      <p style="color:var(--muted);max-width:560px;margin:0 auto">Proceso batch optimizado para máxima producción de ácido fólico recombinante.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="custom-tabs">
+          <button class="custom-tab-btn active" onclick="switchTab('tab-params')">Parámetros</button>
+          <button class="custom-tab-btn" onclick="switchTab('tab-medio')">Medio de Cultivo</button>
+          <button class="custom-tab-btn" onclick="switchTab('tab-induccion')">Inducción</button>
+        </div>
+
+        <div id="tab-params" class="tab-panel active">
+          <div class="bioreactor-params">
+            <div class="param-card">
+              <div class="param-label">Temperatura Crecimiento</div>
+              <div class="param-value" style="color:var(--beet-light)">37 °C</div>
+              <div class="param-note">Óptima para E. coli BL21(DE3)</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Temperatura Expresión</div>
+              <div class="param-value" style="color:var(--folate-light)">25 °C</div>
+              <div class="param-note">+83.57% rendimiento de folato</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">pH Controlado</div>
+              <div class="param-value" style="color:var(--gold)">7.0–7.2</div>
+              <div class="param-note">NaOH 1M o H₃PO₄ 1M automático</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Agitación Pre-inducción</div>
+              <div class="param-value">220 rpm</div>
+              <div class="param-note">Máxima transferencia de O₂</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Agitación Post-inducción</div>
+              <div class="param-value">110 rpm</div>
+              <div class="param-note">Reduce estrés mecánico celular</div>
+            </div>
+            <div class="param-card">
+              <div class="param-label">Aireación</div>
+              <div class="param-value">1 vvm</div>
+              <div class="param-note">Condiciones aeróbicas forzadas</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-medio" class="tab-panel">
+          <div class="glass-card">
+            <h5 style="font-family:'Syne',sans-serif;margin-bottom:20px;color:var(--gold)">Medio TB (Terrific Broth)</h5>
+            <table class="custom-table w-100">
+              <thead>
+                <tr><th>Componente</th><th>Concentración</th><th>Función</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Extracto de levadura</td><td style="color:var(--folate-light)">24 g/L</td><td style="color:var(--muted)">Fuente de vitaminas y cofactores</td></tr>
+                <tr><td>Triptona</td><td style="color:var(--folate-light)">12 g/L</td><td style="color:var(--muted)">Fuente de aminoácidos</td></tr>
+                <tr><td>Glicerina</td><td style="color:var(--folate-light)">4 mL/L</td><td style="color:var(--muted)">Fuente de carbono adicional</td></tr>
+                <tr><td>KH₂PO₄</td><td style="color:var(--folate-light)">12.5 g/L</td><td style="color:var(--muted)">Buffer fosfato, pH</td></tr>
+                <tr><td>K₂HPO₄</td><td style="color:var(--folate-light)">2.3 g/L</td><td style="color:var(--muted)">Buffer fosfato</td></tr>
+                <tr><td>Glucosa</td><td style="color:var(--gold)">5 g/L</td><td style="color:var(--muted)">Fuente de carbono principal + NADPH</td></tr>
+                <tr><td>pABA</td><td style="color:var(--gold)">0.13 g/L</td><td style="color:var(--muted)">Sustrato directo de DHPS</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="tab-induccion" class="tab-panel">
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="glass-card" style="border-color:rgba(212,160,23,.3)">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div class="card-icon icon-gold"><i class="fas fa-flask"></i></div>
+                  <div>
+                    <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:2px">Punto de Inducción</h5>
+                    <span style="color:var(--gold);font-size:.85rem">OD₆₀₀ = 0.8</span>
+                  </div>
+                </div>
+                <p style="font-size:.86rem;color:var(--muted);margin:0">A OD₆₀₀ = 0.8 (fase exponencial media) se agrega IPTG. Este punto maximiza la producción de folato: <strong style="color:var(--text)">469.94 μg/g DCW</strong>, 10.5 veces mayor que la cepa original.</p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="glass-card">
+                <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:12px">Inductor: IPTG</h5>
+                <p style="font-size:.86rem;color:var(--muted)">El isopropil-β-D-1-tiogalactopiranósido (IPTG) desreprime el operador lac, permitiendo a la ARN polimerasa T7 transcribir el gen folP con máxima eficiencia. Sin IPTG, LacI mantiene la expresión suprimida.</p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="glass-card" style="background:rgba(42,157,130,.08);border-color:rgba(42,157,130,.2)">
+                <h5 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:12px;color:var(--folate-light)">Tipo de Biorreactor: Batch</h5>
+                <p style="font-size:.86rem;color:var(--muted);margin:0">El proceso batch permite control preciso de todas las variables desde la inoculación hasta la cosecha, ideal para la validación inicial del proceso de producción recombinante.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <!-- Bioreactor SVG animation -->
+        <div class="glass-card text-center" style="padding:24px">
+          <h6 style="font-family:'Syne',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:20px">Biorreactor Batch — Simulación</h6>
+          <svg viewBox="0 0 260 380" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:260px">
+            <!-- Tank body -->
+            <rect x="60" y="60" width="140" height="240" rx="20" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.1)" stroke-width="2"/>
+            <!-- Liquid -->
+            <clipPath id="tank-clip">
+              <rect x="62" y="62" width="136" height="236" rx="18"/>
+            </clipPath>
+            <rect x="62" y="150" width="136" height="148" fill="rgba(26,107,90,.25)" clip-path="url(#tank-clip)">
+              <animate attributeName="y" values="150;145;150" dur="3s" repeatCount="indefinite"/>
+            </rect>
+            <!-- Bubbles -->
+            <g clip-path="url(#tank-clip)">
+              <circle cx="90" cy="280" r="4" fill="rgba(42,157,130,.5)">
+                <animate attributeName="cy" values="280;100;280" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="130" cy="290" r="3" fill="rgba(42,157,130,.4)">
+                <animate attributeName="cy" values="290;120;290" dur="4s" repeatCount="indefinite" begin="-.5s"/>
+                <animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite" begin="-.5s"/>
+              </circle>
+              <circle cx="170" cy="270" r="5" fill="rgba(42,157,130,.3)">
+                <animate attributeName="cy" values="270;110;270" dur="2.5s" repeatCount="indefinite" begin="-1s"/>
+                <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite" begin="-1s"/>
+              </circle>
+              <circle cx="110" cy="260" r="3.5" fill="rgba(42,157,130,.4)">
+                <animate attributeName="cy" values="260;130;260" dur="3.5s" repeatCount="indefinite" begin="-2s"/>
+              </circle>
+            </g>
+            <!-- Impeller -->
+            <g transform="translate(130,210)">
+              <animateTransform attributeName="transform" type="rotate" values="0 130 210;360 130 210" dur="3s" repeatCount="indefinite" additive="replace"/>
+              <line x1="-30" y1="0" x2="30" y2="0" stroke="rgba(255,255,255,.3)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="0" y1="-30" x2="0" y2="30" stroke="rgba(255,255,255,.3)" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="0" cy="0" r="5" fill="rgba(255,255,255,.2)"/>
+            </g>
+            <!-- Shaft -->
+            <line x1="130" y1="60" x2="130" y2="180" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+            <!-- Motor -->
+            <rect x="110" y="30" width="40" height="32" rx="6" fill="rgba(212,160,23,.15)" stroke="rgba(212,160,23,.3)" stroke-width="1.5"/>
+            <text x="130" y="52" text-anchor="middle" font-size="9" fill="var(--gold)" font-family="Syne,sans-serif">220 rpm</text>
+            <!-- Ports -->
+            <rect x="200" y="90" width="30" height="12" rx="4" fill="rgba(42,157,130,.2)" stroke="rgba(42,157,130,.3)" stroke-width="1"/>
+            <text x="230" y="100" font-size="8" fill="var(--folate-light)" font-family="Syne,sans-serif"> O₂</text>
+            <rect x="200" y="130" width="30" height="12" rx="4" fill="rgba(212,160,23,.2)" stroke="rgba(212,160,23,.3)" stroke-width="1"/>
+            <text x="230" y="140" font-size="8" fill="var(--gold)" font-family="Syne,sans-serif"> pH</text>
+            <rect x="30" y="90" width="30" height="12" rx="4" fill="rgba(139,26,74,.2)" stroke="rgba(139,26,74,.3)" stroke-width="1"/>
+            <text x="12" y="100" font-size="8" fill="var(--beet-light)" font-family="Syne,sans-serif">IPTG</text>
+            <!-- Bottom outlet -->
+            <rect x="110" y="300" width="40" height="16" rx="4" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <line x1="130" y1="316" x2="130" y2="340" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+            <!-- Labels -->
+            <text x="130" y="365" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.4)" font-family="Syne,sans-serif">Cosecha</text>
+            <!-- Temp label -->
+            <text x="80" y="85" font-size="9" fill="rgba(255,255,255,.35)" font-family="Syne,sans-serif">37→25°C</text>
+            <!-- OD label -->
+            <text x="165" y="165" font-size="8" fill="rgba(255,255,255,.35)" font-family="Syne,sans-serif">OD=0.8</text>
+            <line x1="160" y1="162" x2="140" y2="155" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EXTRACCIÓN & PURIFICACIÓN ═══════════ -->
+<section id="extraccion" style="background:rgba(255,255,255,.015);padding:100px 0;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Downstream Processing</div>
+      <div class="divider mx-auto"></div>
+      <h2 class="section-title">Extracción y Purificación</h2>
+      <p style="color:var(--muted);max-width:560px;margin:0 auto">El ácido fólico se acumula intracelularmente. Cuatro etapas rigurosas garantizan la obtención de L-5-MTHF puro y biodisponible.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-xl-3">
+        <div class="glass-card h-100">
+          <div class="card-icon icon-beet" style="font-size:1.2rem">①</div>
+          <h5 style="font-family:'Syne',sans-serif;font-size:.95rem;margin-bottom:10px">Cosecha por Centrifugación</h5>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:16px">Al finalizar la inducción, las células son centrifugadas en flujo continuo (Beckman Coulter).</p>
+          <div class="param-card">
+            <div class="param-label">Condiciones</div>
+            <div style="font-size:.82rem;color:var(--text);margin-top:4px">4°C · 3,400 g · 10 min</div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:12px;margin-bottom:0">La baja temperatura previene la degradación del ácido fólico, termolábil y sensible a la oxidación.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="glass-card h-100">
+          <div class="card-icon icon-green" style="font-size:1.2rem">②</div>
+          <h5 style="font-family:'Syne',sans-serif;font-size:.95rem;margin-bottom:10px">Ruptura Celular — BugBuster</h5>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:16px">Kit BugBuster® (Merck Millipore). Detergentes no iónicos disuelven la membrana sin desnaturalizar el folato.</p>
+          <div class="param-card">
+            <div class="param-label">Buffer de extracción</div>
+            <div style="font-size:.82rem;color:var(--text);margin-top:4px">50 mM Tris-HCl pH 7.2 + 1% ác. ascórbico + 0.1% β-mercaptoetanol</div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:12px;margin-bottom:0">Calentamiento a 100°C × 10 min. Centrifugación final: 20,000 g × 15 min.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="glass-card h-100">
+          <div class="card-icon icon-gold" style="font-size:1.2rem">③</div>
+          <h5 style="font-family:'Syne',sans-serif;font-size:.95rem;margin-bottom:10px">Deconjugación Enzimática</h5>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:16px">El folato intracelular existe como poliglutamato (4-6 residuos) de menor biodisponibilidad. Se convierte a monoglutamato.</p>
+          <div class="param-card">
+            <div class="param-label">Enzima: γ-glutamil hidrolasa</div>
+            <div style="font-size:.82rem;color:var(--text);margin-top:4px">50 μL suero fresco de ratón · 37°C · 3 horas</div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:12px;margin-bottom:0">Inactivación enzimática a 100°C × 5 min + centrifugación 20,000 g.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="glass-card h-100" style="border-color:rgba(42,157,130,.2)">
+          <div class="card-icon icon-green" style="font-size:1.2rem">④</div>
+          <h5 style="font-family:'Syne',sans-serif;font-size:.95rem;margin-bottom:10px">Cromatografía Ni-NTA</h5>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:16px">La etiqueta 6×His de la proteína DHPS permite purificación por afinidad con resina de níquel.</p>
+          <div class="param-card">
+            <div class="param-label">Resultado Final</div>
+            <div style="font-size:.82rem;color:var(--folate-light);margin-top:4px">L-5-MTHF puro y biodisponible</div>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:12px;margin-bottom:0">Verificación por espectrofotometría NanoDrop: A₂₆₀/A₂₈₀ &gt; 1.8 confirma pureza adecuada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRODUCTO FINAL ═══════════ -->
+<section id="producto" class="section-spacer">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 text-center">
+        <div class="product-visual">
+          <!-- Beet jam jar SVG -->
+          <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" class="jar-svg">
+            <defs>
+              <radialGradient id="jam-grad" cx="40%" cy="30%">
+                <stop offset="0%" stop-color="#D4527A"/>
+                <stop offset="60%" stop-color="#8B1A4A"/>
+                <stop offset="100%" stop-color="#5A0A2A"/>
+              </radialGradient>
+              <radialGradient id="glass-grad" cx="30%" cy="20%">
+                <stop offset="0%" stop-color="rgba(255,255,255,.15)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,.02)"/>
+              </radialGradient>
+              <filter id="jar-glow">
+                <feGaussianBlur stdDeviation="12" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+            <!-- Glow -->
+            <ellipse cx="160" cy="280" rx="90" ry="20" fill="rgba(139,26,74,.3)" filter="url(#jar-glow)"/>
+            <!-- Jar body -->
+            <path d="M 90,100 Q 85,100 80,110 L 70,280 Q 70,295 160,295 Q 250,295 250,280 L 240,110 Q 235,100 230,100 Z" fill="url(#glass-grad)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <!-- Jam fill -->
+            <path d="M 82,155 Q 82,150 82,150 L 74,278 Q 74,290 160,290 Q 246,290 246,278 L 238,150 Q 238,150 238,155 Z" fill="url(#jam-grad)" opacity=".9"/>
+            <!-- Jam shine -->
+            <ellipse cx="130" cy="160" rx="28" ry="12" fill="rgba(255,255,255,.1)" transform="rotate(-15 130 160)"/>
+            <!-- Glass shine -->
+            <path d="M 95,115 Q 92,150 92,200" stroke="rgba(255,255,255,.15)" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <!-- Lid -->
+            <rect x="75" y="85" width="170" height="22" rx="6" fill="#2A4A2A" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <rect x="80" y="88" width="160" height="8" rx="3" fill="rgba(255,255,255,.08)"/>
+            <!-- Label -->
+            <rect x="95" y="195" width="130" height="75" rx="8" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+            <text x="160" y="217" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.5)" font-family="Syne,sans-serif" font-weight="600" letter-spacing="1">BIOFOLATE LAB</text>
+            <text x="160" y="235" text-anchor="middle" font-size="13" fill="white" font-family="Syne,sans-serif" font-weight="800">Mermelada</text>
+            <text x="160" y="250" text-anchor="middle" font-size="13" fill="white" font-family="Syne,sans-serif" font-weight="800">de Remolacha</text>
+            <text x="160" y="265" text-anchor="middle" font-size="8.5" fill="rgba(212,160,23,.9)" font-family="Syne,sans-serif">+ Ácido Fólico / Vit. B9</text>
+            <!-- Beet decoration -->
+            <circle cx="100" cy="125" r="4" fill="rgba(139,26,74,.6)"/>
+            <circle cx="220" cy="130" r="3" fill="rgba(139,26,74,.5)"/>
+            <circle cx="210" cy="122" r="5" fill="rgba(139,26,74,.4)"/>
+          </svg>
+          <!-- Sparkles -->
+          <div class="sparkle" style="top:10%;left:15%;animation-delay:0s"></div>
+          <div class="sparkle" style="top:20%;right:10%;animation-delay:.7s;background:var(--folate-light)"></div>
+          <div class="sparkle" style="bottom:30%;left:8%;animation-delay:1.4s;background:var(--beet-light)"></div>
+          <div class="sparkle" style="bottom:15%;right:15%;animation-delay:.3s"></div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="section-label">Producto Final</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Mermelada de <span style="color:var(--beet-light)">Remolacha</span> Biotecnológica</h2>
+        <p style="color:var(--muted);margin-bottom:30px">Un alimento funcional innovador que combina la riqueza nutricional de la remolacha con el ácido fólico producido biotecnológicamente, ofreciendo una solución accesible y deliciosa contra la anemia megaloblástica.</p>
+        
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <div class="glass-card">
+              <div class="card-icon icon-beet"><i class="fas fa-carrot"></i></div>
+              <h6 style="font-family:'Syne',sans-serif">Base: Remolacha</h6>
+              <p style="font-size:.83rem;color:var(--muted);margin:0">Rica en hierro, antioxidantes, betaína y nitratos. Sinergia nutricional con el ácido fólico.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="glass-card">
+              <div class="card-icon icon-green"><i class="fas fa-microscope"></i></div>
+              <h6 style="font-family:'Syne',sans-serif">Folato Biotecnológico</h6>
+              <p style="font-size:.83rem;color:var(--muted);margin:0">L-5-MTHF producido por <em>E. coli</em> recombinante con gen <em>folP</em> de <em>L. lactis</em>.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="glass-card">
+              <div class="card-icon icon-gold"><i class="fas fa-shield-alt"></i></div>
+              <h6 style="font-family:'Syne',sans-serif">Tratamiento de Anemia</h6>
+              <p style="font-size:.83rem;color:var(--muted);margin:0">Aporta el folato necesario para la correcta maduración eritrocitaria y síntesis de ADN.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="glass-card">
+              <div class="card-icon icon-beet"><i class="fas fa-globe-americas"></i></div>
+              <h6 style="font-family:'Syne',sans-serif">Impacto Social</h6>
+              <p style="font-size:.83rem;color:var(--muted);margin:0">Accesible para poblaciones vulnerables. Alternativa a suplementos farmacéuticos convencionales.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <h6 style="font-family:'Syne',sans-serif;color:var(--folate-light);margin-bottom:8px">¿Por qué mermelada de remolacha?</h6>
+          <p style="font-size:.86rem;color:var(--muted);margin:0">La remolacha es un vehículo ideal por su color intenso (betalinas), que encubre organolépticamente el folato añadido, su acidez natural que favorece la estabilidad del L-5-MTHF, y su alta aceptación cultural en poblaciones latinoamericanas donde la anemia megaloblástica es más prevalente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand mb-3">🧬 BioTech</div>
+        <p style="font-size:.85rem;color:var(--muted)">Laboratorio de biotecnología aplicada al desarrollo de alimentos funcionales para combatir deficiencias nutricionales en poblaciones vulnerables.</p>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="font-family:'Syne',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:16px">Referencias Clave</h6>
+        <ul style="list-style:none;padding:0;font-size:.83rem;color:var(--muted)">
+          <li style="margin-bottom:8px">• Wang et al. (2022) — Protocolo de cosecha y extracción</li>
+          <li style="margin-bottom:8px">• Sybesma et al. (2003) — Acumulación intracelular de folato</li>
+          <li style="margin-bottom:8px">• OMS — Prevalencia global de anemia</li>
+          <li>• NCBI NZ_CP028160.1 — Secuencia gen folP</li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 style="font-family:'Syne',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:16px">Tecnologías Utilizadas</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="gene-tag">E. coli BL21(DE3)</span>
+          <span class="gene-tag">gen folP</span>
+          <span class="gene-tag">pETDuet-1</span>
+          <span class="gene-tag">DHPS / FolP</span>
+          <span class="gene-tag">Biorreactor Batch</span>
+          <span class="gene-tag">BugBuster®</span>
+          <span class="gene-tag">Ni-NTA</span>
+          <span class="gene-tag highlight">L-5-MTHF</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 pt-4" style="border-top:1px solid var(--glass-border);text-align:center;font-size:.78rem;color:var(--muted)">
+      © 2026 BioTech · Proyecto Biotecnológico — Ácido Fólico en Mermelada de Remolacha
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
